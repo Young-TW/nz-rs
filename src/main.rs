@@ -1,6 +1,8 @@
 // Ensure the nzint module exists and is declared
 mod nzint;
+mod nzfloat;
 use crate::nzint::NzInt;
+use crate::nzfloat::NzFloat;
 
 fn main() {
     let a = NzInt::new(3).unwrap();
@@ -13,4 +15,15 @@ fn main() {
 
     println!("Result of addition: {:?}", c);
     println!("Result of division: {:?}", q);
+
+    let f = NzFloat::new(3.5).unwrap();
+    let g = NzFloat::new(-3.5).unwrap();
+    let h = f.checked_add(g);            // Err(NzfError::ZeroResult)
+
+    let i = NzFloat::new(7.0).unwrap();
+    let j = NzFloat::new(2.0).unwrap();
+    let r = i.checked_div(j).unwrap();   // 3.5 (NzFloat), but would be Err if result were 0
+
+    println!("Result of float addition: {:?}", h);
+    println!("Result of float division: {:?}", r);
 }
