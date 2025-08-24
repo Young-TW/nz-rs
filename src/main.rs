@@ -1,8 +1,10 @@
 // Ensure the nzint module exists and is declared
 mod nzint;
 mod nzfloat;
+mod nzsign;
 use crate::nzint::NzInt;
 use crate::nzfloat::NzFloat;
+use crate::nzsign::nzSign;
 
 fn main() {
     let a = NzInt::new(3).unwrap();
@@ -26,4 +28,11 @@ fn main() {
 
     println!("Result of float addition: {:?}", h);
     println!("Result of float division: {:?}", r);
+
+    let k = nzSign::from_bool(true);
+    let l = nzSign::from_bool(false);
+    println!("Result of nzSign from_bool(true): {:?}", k);
+    println!("Result of nzSign from_bool(false): {:?}", l);
+    println!("Result of nzSign Pos && Neg: {:?}", k.and(l));
+    println!("Result of nzSign Pos || Neg: {:?}", k.or(l));
 }
